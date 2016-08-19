@@ -1,0 +1,44 @@
+{
+    "name": "lambda-term",
+    "optionalDependencies": {},
+    "exportedEnvVars": {
+        "PATH": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/bin"
+        },
+        "version": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "1.10.0"
+        },
+        "lambda_term_version": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "1.10.0"
+        },
+        "FINDLIB": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/lib"
+        }
+    },
+    "version": "1.10.0",
+    "dependencies": {
+        "react": "https://github.com/npm-opam/react",
+        "ocamlbuild": "https://github.com/npm-opam/ocamlbuild",
+        "zed": "https://github.com/npm-opam/zed",
+        "ocamlfind": "https://github.com/npm-opam/ocamlfind",
+        "ocaml": "https://github.com/npm-opam/ocaml.git#npm-4.02.3",
+        "lwt": "https://github.com/npm-opam/lwt",
+        "dependency-env": "https://github.com/npm-ml/dependency-env.git",
+        "substs": "https://github.com/yunxing/substs.git",
+        "nopam": "https://github.com/yunxing/nopam.git",
+        "opam-installer-bin": "https://github.com/yunxing/opam-installer-bin.git"
+    },
+    "scripts": {
+        "postinstall": "eval $(dependencyEnv) && nopam && ocaml setup.ml -configure --prefix $opam_prefix && ocaml setup.ml -build && ocaml setup.ml -install && (opam-installer --prefix=$opam_prefix || true) && injectOpamEnvs"
+    }
+}
